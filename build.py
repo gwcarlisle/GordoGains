@@ -433,7 +433,7 @@ def build():
     sblob = json.dumps(stats, separators=(",", ":"))
     if SECRET_PAT.search(blob) or SECRET_PAT.search(sblob):
         raise SystemExit("ABORT: program.json contains something that looks like a credential. Nothing written.")
-    built = datetime.date.today().isoformat()
+    built = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     html = f"""<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8">
