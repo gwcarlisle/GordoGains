@@ -2,18 +2,42 @@
   "_comment": "Data record for the Progress tab. Manual entries are committed by Claude when Gordon reports them. Pulled sections are overwritten by fetch.py. No credentials ever live here.",
   "baseline": {
     "date": "2026-09-15",
-    "weight_lbs": 197,
-    "waist_in": null,
+    "weight_lbs": 198.6,
+    "waist_in": 38,
     "resting_hr": 60,
-    "note": "Waist not yet measured. Tape at the navel, morning, before food."
+    "note": "Measured 2026-09-15. Tape at the navel, morning, before food."
   },
   "targets": {
     "waist_change_in": -2.5,
     "resting_hr": 54,
     "weight_lbs": 190,
-    "cardio_min_per_week": {"1":75,"2":75,"3":130,"4":130,"5":140,"6":140,"7":90,"8":155,"9":155,"10":170,"11":170,"12":100,"13":185,"14":185,"15":90,"16":120}
+    "cardio_min_per_week": {
+      "1": 75,
+      "2": 75,
+      "3": 130,
+      "4": 130,
+      "5": 140,
+      "6": 140,
+      "7": 90,
+      "8": 155,
+      "9": 155,
+      "10": 170,
+      "11": 170,
+      "12": 100,
+      "13": 185,
+      "14": 185,
+      "15": 90,
+      "16": 120
+    }
   },
-  "weekly": [],
+  "weekly": [
+    {
+      "week": 1,
+      "date": "2026-09-15",
+      "weight_lbs": 198.6,
+      "waist_in": 38
+    }
+  ],
   "pulled": {
     "fetched_at": null,
     "sessions": [],
