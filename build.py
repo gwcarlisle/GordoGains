@@ -67,6 +67,7 @@ color:var(--blue);font-size:15px;font-weight:600;cursor:pointer;display:flex;ali
 .donebtn{width:100%;padding:13px;margin-top:11px;border-radius:10px;border:1px solid var(--blue);
 background:var(--blue-d);color:var(--blue);font:600 15px 'DM Sans',sans-serif;cursor:pointer}
 .donebtn.on{background:var(--green-d);border-color:var(--green);color:var(--green)}
+.mrow{padding:8px 0;border-bottom:1px solid var(--bd)}.mrow:last-child{border-bottom:0}.mrow .note{margin:2px 0 0}
 .rest{background:var(--s1);border:1px dashed var(--bd);border-radius:11px;padding:26px 15px;text-align:center;color:var(--muted)}
 table{width:100%;border-collapse:collapse;font-size:13.5px}
 td{padding:6px 0;border-bottom:1px solid var(--bd);vertical-align:top}
@@ -219,6 +220,19 @@ function refCard(){
     <div class="zone"><span>VO2max</span><b>${P.hr.vo2[0]}-${P.hr.vo2[1]}</b></div>
     <div class="zone"><span>Max</span><b>${P.meta.athlete.hr_max}</b></div></div>`;
 }
+function mobCard(w,dk){
+  const m=P.mobility; if(!m) return '';
+  const hold = w>=m.long_hold_from_week ? '45 sec on anything still tight, 30 sec otherwise' : '30 sec';
+  const k=`mob_${w}_${dk}`, done=load(k,false);
+  const cnt=DAYS.filter(([d])=>load(`mob_${w}_${d}`,false)).length;
+  const bench = m.benchmark_weeks.includes(w) ? `<p class="note" style="color:var(--amber);margin-top:8px"><b>Benchmark week.</b> Record once this week: ${m.benchmarks.join(' &middot; ')}</p>` : '';
+  const blocks=m.blocks.map(b=>`<details><summary>${b.name} &middot; ${b.min} min</summary>${
+    b.items.map(([n,d])=>`<div class="mrow"><div>${n}</div><div class="note">${d.replace(/HOLD/g,w>=m.long_hold_from_week?'45 sec':'30 sec')}</div></div>`).join('')}</details>`).join('');
+  return `<div class="sect">${m.title} &middot; about ${m.minutes} min</div>
+  <div class="card"><div class="prescribe"><div>This week <b>${cnt} of ${m.min_per_week}+</b></div><div>Holds <b>${w>=m.long_hold_from_week?'30-45s':'30s'}</b></div></div>
+  <p class="note">${m.rules}</p>${bench}${blocks}
+  <button class="donebtn${done?' on':''}" id="mob">${done?'Done tonight':'Mark done'}</button></div>`;
+}
 function renderPlan(){
   const ph=phaseOf(W);
   $('#hdr').innerHTML=`Week ${W} <span>of ${NW} &middot; ${ph.name}</span>`;
@@ -231,8 +245,10 @@ function renderPlan(){
   else if(D==='thu') h+=intDay(W);
   else if(D==='sun') h+=sunDay(W);
   else h+=strengthDay(D,W);
+  h+=mobCard(W,D);
   h+=refCard();
   $('#main').innerHTML=h;
+  const mb=$('#mob'); if(mb) mb.onclick=()=>{const k=`mob_${W}_${D}`,v=!load(k,false);save(k,v);render()};
   const z=$('#z2'); if(z) z.onclick=()=>{const k=`z2_${W}`,v=!load(k,false);save(k,v);render()};
   const s=$('#su'); if(s) s.onclick=()=>{const k=`su_${W}`,v=!load(k,false);save(k,v);render()};
   $$('.rnd').forEach(b=>b.onclick=()=>{const k=`iv_${W}`;let st=load(k,[]);const r=+b.dataset.r;
