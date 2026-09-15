@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0c0e14">
+<title>GordoGains</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0e14;--s1:#161922;--s2:#1e2230;--s3:#252a3a;--green:#4ade80;--green-d:#162a1e;
+--blue:#60a5fa;--blue-d:#111d2e;--amber:#fbbf24;--amber-d:#251b08;--red:#f87171;--purple:#a78bfa;
+--purple-d:#1e1535;--teal:#2dd4bf;--teal-d:#0d2521;--text:#e2e6f0;--muted:#64748b;--bd:#1e2535}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 'DM Sans',-apple-system,system-ui,sans-serif;
+padding:0 0 60px;max-width:760px;margin:0 auto}
+.mono{font-family:'DM Mono',ui-monospace,Menlo,monospace}
+header{padding:18px 16px 12px;border-bottom:1px solid var(--bd);position:sticky;top:0;background:var(--bg);z-index:10}
+h1{font-size:19px;margin:0;letter-spacing:-.01em}
+h1 span{color:var(--muted);font-weight:400}
+.built{font-size:11px;color:var(--muted);margin-top:3px}
+.pills{display:flex;gap:6px;overflow-x:auto;padding:12px 16px;scrollbar-width:none}
+.pills::-webkit-scrollbar{display:none}
+.pill{flex:0 0 auto;min-width:46px;padding:8px 10px;border-radius:9px;border:1px solid var(--bd);
+background:var(--s1);color:var(--muted);font-size:13px;cursor:pointer;text-align:center}
+.pill.on{background:var(--purple-d);border-color:var(--purple);color:var(--purple);font-weight:600}
+.pill.dl{border-color:var(--amber);color:var(--amber)}
+.pill.dl.on{background:var(--amber-d)}
+.days{display:flex;gap:5px;overflow-x:auto;padding:0 16px 12px;scrollbar-width:none}
+.days::-webkit-scrollbar{display:none}
+.day{flex:0 0 auto;padding:8px 13px;border-radius:9px;border:1px solid var(--bd);background:var(--s1);
+color:var(--muted);font-size:13px;cursor:pointer}
+.day.on{background:var(--s3);border-color:var(--blue);color:var(--blue);font-weight:600}
+.day.today::after{content:"•";color:var(--green);margin-left:5px}
+main{padding:0 16px}
+.banner{background:var(--purple-d);border:1px solid var(--purple);border-radius:11px;padding:13px 15px;margin:4px 0 16px}
+.banner.dl{background:var(--amber-d);border-color:var(--amber)}
+.banner b{display:block;font-size:12px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px;color:var(--purple)}
+.banner.dl b{color:var(--amber)}
+.banner p{margin:0;font-size:14px;color:var(--text);opacity:.93}
+.sect{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin:22px 0 9px}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:11px;padding:13px 15px;margin-bottom:9px}
+.card.new{border-color:var(--red)}
+.card h3{margin:0 0 7px;font-size:15px;font-weight:600;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.tag{font-size:10px;letter-spacing:.07em;text-transform:uppercase;padding:2px 7px;border-radius:5px;
+background:var(--red);color:#2a1212;font-weight:700;flex:0 0 auto}
+.tag.drop{background:var(--amber);color:#251b08}
+.prescribe{display:flex;gap:16px;flex-wrap:wrap;font-size:14px;margin-bottom:6px}
+.prescribe div{color:var(--muted)}
+.prescribe b{color:var(--teal);font-weight:600}
+.note{font-size:13px;color:var(--muted);margin:0;line-height:1.5}
+.big{font-size:30px;font-weight:700;letter-spacing:-.02em}
+.big small{font-size:14px;font-weight:400;color:var(--muted);letter-spacing:0}
+.rounds{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0 4px}
+.rnd{width:46px;height:46px;border-radius:10px;border:1px solid var(--blue);background:var(--blue-d);
+color:var(--blue);font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.rnd.on{background:var(--green);border-color:var(--green);color:#0c1a10}
+.donebtn{width:100%;padding:13px;margin-top:11px;border-radius:10px;border:1px solid var(--blue);
+background:var(--blue-d);color:var(--blue);font:600 15px 'DM Sans',sans-serif;cursor:pointer}
+.donebtn.on{background:var(--green-d);border-color:var(--green);color:var(--green)}
+.rest{background:var(--s1);border:1px dashed var(--bd);border-radius:11px;padding:26px 15px;text-align:center;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td{padding:6px 0;border-bottom:1px solid var(--bd);vertical-align:top}
+td:last-child{text-align:right;color:var(--teal);white-space:nowrap;padding-left:12px}
+tr:last-child td{border-bottom:none}
+details{margin-top:9px}
+summary{cursor:pointer;color:var(--muted);font-size:13px;padding:4px 0}
+.zone{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--bd);font-size:13.5px}
+.zone:last-child{border-bottom:none}
+.zone b{color:var(--teal);font-weight:600}
+</style>
+</head><body>
+<header>
+  <h1 id="hdr"></h1>
+  <div class="built"><span id="sub"></span> &middot; built 2026-09-15</div>
+</header>
+<div class="pills" id="pills"></div>
+<div class="days" id="days"></div>
+<main id="main"></main>
+<script>const P={"meta":{"name":"GordoGains Block A","start_date":"2026-09-15","weeks":16,"rest_day":"Monday","athlete":{"age":53,"height":"6'2\"","start_weight_lbs":197,"hr_max":180},"goals":["upper body definition","midsection fat loss","cardiovascular conditioning","lower body maintenance"]},"hr":{"easy_max":122,"z2":[122,144],"z2_upper":[128,144],"vo2":[162,171],"vo2_light":[158,168],"deload":[155,165]},"nutrition":{"calories":2450,"protein_g":180,"carbs_g":250,"fat_g":80,"creatine_g":5,"review":"If bodyweight has not moved after 2 full weeks of hitting these, drop 150 calories from carbs.","anchors":[{"when":"Breakfast","what":"Fairlife Core Power Elite, or whey + liquid egg whites","g":40},{"when":"Mid-morning","what":"Greek yogurt or cottage cheese","g":25},{"when":"Lunch","what":"Rotisserie chicken or canned tuna","g":45},{"when":"Dinner","what":"Salmon, ground turkey, or shrimp","g":45},{"when":"Before bed","what":"Casein shake","g":25}]},"phases":[{"weeks":[1,2],"name":"Re-entry","sets_mod":-1,"rpe":"6-7","note":"One less set on everything. Stop 3-4 reps short. You are finding loads, not training. Everything seated or chest-supported. No hip thrust yet."},{"weeks":[3,4,5,6],"name":"Accumulation 1","sets_mod":0,"rpe":"7-8","note":"Full sets. Double progression: hit the top of the rep range on every set, add weight next session. Hip thrust enters week 3. Primary lifts go to 5 sets in weeks 5-6."},{"weeks":[7],"name":"Deload","sets_mod":-2,"rpe":"5-6","note":"Two sets per exercise at 60% of your working weight, same reps. It will feel pointless. Do it anyway. This is what makes weeks 8-11 productive."},{"weeks":[8,9,10,11],"name":"Accumulation 2","sets_mod":0,"rpe":"8-9","note":"New exercises on the upper days. Primaries drop to 6-10 reps, which means heavier. Primary goes to 5 sets in weeks 10-11."},{"weeks":[12],"name":"Deload","sets_mod":-2,"rpe":"5-6","note":"Same as week 7. Two sets, 60%."},{"weeks":[13,14],"name":"Intensification","sets_mod":0,"rpe":"9","note":"Heaviest work of the block. The last set of the final accessory each day is a drop set: hit failure, strip 30%, go again to failure. One per session, no more."},{"weeks":[15],"name":"Holiday deload","sets_mod":-2,"rpe":"5-6","note":"Planned light week over Christmas. Train what you can, eat what you want. This is in the program on purpose so a disrupted week does not become a lost month."},{"weeks":[16],"name":"Test","sets_mod":-1,"rpe":"6-7","note":"Light on strength. Thursday is the benchmark: the exact week 3 interval session. Re-measure weight, waist and resting HR."}],"cardio":{"zone2":{"1":[40,"122-144"],"2":[40,"122-144"],"3":[45,"122-144"],"4":[45,"122-144"],"5":[50,"122-144"],"6":[50,"122-144"],"7":[35,"122-135"],"8":[50,"128-144"],"9":[50,"128-144"],"10":[55,"128-144"],"11":[55,"128-144"],"12":[40,"122-135"],"13":[60,"128-144"],"14":[60,"128-144"],"15":[40,"122-135"],"16":[40,"122-135"]},"intervals":{"1":[3,4,"158-168",3,"Three rounds, not four. You are re-entering. Get used to the feeling."],"2":[3,4,"158-168",3,"Three rounds. Last easy week before it gets real."],"3":[4,4,"162-171",3,"Four rounds from here. REMEMBER THIS SESSION. Week 16 repeats it exactly and you will compare."],"4":[4,4,"162-171",3,"Four rounds. Push from the gun, do not build into it."],"5":[4,4,"162-171",3,"Aim to reach 162 within 90 seconds of starting each round."],"6":[4,4,"162-171",3,"Same session. The adaptation is in how fast you get to target and how fast you recover."],"7":[3,3,"155-165",3,"DELOAD. Three rounds of three minutes, easier target. Do not be a hero."],"8":[4,4,"162-171",2.5,"Recovery drops to 2:30. Same work, less rest. This is the progression."],"9":[4,4,"162-171",2.5,"Recovery still 2:30."],"10":[5,4,"162-171",3,"FIVE rounds. Recovery back to 3 min. Round five is the whole point."],"11":[5,4,"162-171",3,"Five rounds again."],"12":[3,3,"155-165",3,"DELOAD."],"13":[4,5,"162-171",3,"FIVE minute rounds. Hardest version in the block. Minute four is where it is won."],"14":[4,5,"162-171",3,"Five minute rounds again."],"15":[3,3,"155-165",3,"Holiday deload. Do it if you can, skip it without guilt if you cannot."],"16":[4,4,"162-171",3,"BENCHMARK. Identical to week 3. Compare your average HR per round and how fast you recover between them."]},"sunday":{"1":[45,60],"2":[45,60],"3":[45,60],"4":[45,60],"5":[45,60],"6":[45,60],"7":[30,45],"8":[60,75],"9":[60,75],"10":[60,75],"11":[60,75],"12":[45,45],"13":[60,90],"14":[60,90],"15":[30,60],"16":[45,45]}},"strength":{"tue":{"title":"Upper A - Push","p1":[{"n":"Incline Bench Press (Dumbbell)","s":4,"r":"8-12","w":"30 lb DBs","rest":150,"note":"Primary. 30-40 degree bench. Elbows at 45 degrees, not flared."},{"n":"Chest Press (Machine)","s":3,"r":"10-12","w":"find it","rest":90,"note":"No history here. Week 1 is finding the load."},{"n":"Cable Fly Crossovers","s":3,"r":"12-15","w":"25 lb/side","rest":75,"note":"Chest volume. Squeeze and hold a beat in the middle. Light."},{"n":"Shoulder Press (Dumbbell)","s":3,"r":"10-12","w":"25 lb DBs","rest":90,"note":"SEATED with back support. Non-negotiable."},{"n":"Lateral Raise (Dumbbell)","s":3,"r":"12-15","w":"12 lb DBs","rest":60,"note":"Light. Shoulder width is what makes a waist look narrow."},{"n":"Triceps Pushdown","s":3,"r":"12-15","w":"40 lbs","rest":60,"note":"Elbows pinned to your sides."},{"n":"Pallof Press","s":3,"r":"10 each side","w":"25 lbs","rest":60,"note":"Anti-rotation core. Back friendly. Slow."}],"p2":[{"n":"Bench Press (Dumbbell)","s":4,"r":"6-10","w":"heavier","rest":150,"note":"NEW. Flat bench. You have history here, and it loads heavier than incline."},{"n":"Incline Chest Press (Machine)","s":3,"r":"8-12","w":"find it","rest":90,"note":"NEW. Covers the upper chest angle you gave up."},{"n":"Cable Fly Crossovers","s":3,"r":"12-15","w":"progress","rest":75,"note":"Unchanged."},{"n":"Shoulder Press (Dumbbell)","s":3,"r":"8-10","w":"progress","rest":90,"note":"Heavier rep range now."},{"n":"Lateral Raise (Cable)","s":3,"r":"12-15","w":"find it","rest":60,"note":"NEW. Constant tension through the whole range, unlike dumbbells."},{"n":"Triceps Pushdown","s":3,"r":"10-12","w":"progress","rest":60,"note":"Heavier. Weeks 13-14 this is your drop set."},{"n":"Pallof Press","s":3,"r":"10 each side","w":"progress","rest":60,"note":"Unchanged."}]},"fri":{"title":"Upper B - Pull","p1":[{"n":"Chest Supported Incline Row (Dumbbell)","s":4,"r":"8-12","w":"40 lb DBs","rest":150,"note":"Primary. Chest stays on the pad. Drive elbows back, squeeze. PER HAND."},{"n":"Lat Pulldown (Cable)","s":4,"r":"10-12","w":"100 lbs","rest":90,"note":"Wide grip. Pull to the collarbone, never behind the neck."},{"n":"Seated Row (Machine)","s":3,"r":"10-12","w":"90 lbs","rest":90,"note":"Neutral grip. Do not rock. Torso stays still."},{"n":"Face Pull","s":3,"r":"15","w":"30 lbs","rest":60,"note":"Rope at eye height. Posture insurance for a desk job."},{"n":"Bicep Curl (Dumbbell)","s":3,"r":"10-12","w":"20 lb DBs","rest":60,"note":"No swinging."},{"n":"Hammer Curl (Dumbbell)","s":3,"r":"10-12","w":"20 lb DBs","rest":60,"note":"Neutral grip hits the brachialis, which is what makes the arm look thicker."},{"n":"Dead Bug","s":3,"r":"12 each side","w":"bodyweight","rest":60,"note":"Lower back stays flat on the floor throughout."}],"p2":[{"n":"Seated Row (Machine)","s":4,"r":"6-10","w":"heavier","rest":150,"note":"NEW PRIMARY. Neutral grip, heavy. Moves to the front of the session."},{"n":"Lat Pulldown (Cable) - neutral grip","s":4,"r":"8-10","w":"progress","rest":90,"note":"NEW GRIP. Easier on the shoulder at heavier loads."},{"n":"Chest Supported Incline Row (Dumbbell)","s":3,"r":"10-12","w":"progress","rest":90,"note":"Drops to accessory, higher reps."},{"n":"Face Pull","s":3,"r":"15","w":"progress","rest":60,"note":"Unchanged."},{"n":"Bicep Curl (Dumbbell)","s":3,"r":"8-12","w":"progress","rest":60,"note":"Heavier."},{"n":"Hammer Curl (Dumbbell)","s":3,"r":"8-12","w":"progress","rest":60,"note":"Heavier. Weeks 13-14 this is your drop set."},{"n":"Dead Bug","s":3,"r":"12 each side","w":"bodyweight","rest":60,"note":"Unchanged."}]},"sat":{"title":"Lower - Machines","warmup":"Lateral band walks 2 x 20 steps each direction, then glute bridges 2 x 12. Never skipped. This is the knee protection work.","p1":[{"n":"Leg Press","s":4,"r":"10-12","w":"160 lbs","rest":150,"note":"Feet mid-platform. Knees track over your second toe. Do not let the lower back round at the bottom."},{"n":"Hip Thrust (Machine)","s":3,"r":"10-12","w":"90 lbs","rest":90,"note":"WEEK 3 ONWARD. Skip entirely in weeks 1-2."},{"n":"Leg Extension (Machine)","s":3,"r":"12-15","w":"70 lbs","rest":75,"note":"Controlled. Pause a beat at the top."},{"n":"Seated Leg Curl (Machine)","s":3,"r":"12-15","w":"70 lbs","rest":75,"note":"Slow on the way back."},{"n":"Hip Abduction (Machine)","s":3,"r":"15","w":"70 lbs","rest":60,"note":"Knee protection. Never drops out of the program."},{"n":"Standing Calf Raise (Machine)","s":3,"r":"12","w":"90 lbs","rest":60,"note":"Full stretch at the bottom, full squeeze at the top."},{"n":"Seated Calf Raise (Machine)","s":3,"r":"12","w":"45 lbs","rest":60,"note":"Bent knee hits a different calf muscle. Both variations stay in."},{"n":"Plank","s":3,"r":"45-60 sec","w":"bodyweight","rest":60,"note":"Squeeze glutes. Do not let the hips sag."}],"p2":"same"}},"non_training":["Two to three phone meetings a day taken walking. Most of your meetings are audio and nine hours of sitting is its own risk.","Standing desk from 20 percent to 40 percent of the day.","Ask your doctor about ApoB on the next lipid panel, and whether a calcium score fits your family history."]};</script>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const START=new Date(P.meta.start_date+'T00:00:00');
+const DAYS=[['tue','Tue'],['wed','Wed'],['thu','Thu'],['fri','Fri'],['sat','Sat'],['sun','Sun'],['mon','Mon']];
+const NW=P.meta.weeks;
+
+function weekStart(w){const d=new Date(START);d.setDate(d.getDate()+(w-1)*7);return d}
+function weekEnd(w){const d=weekStart(w);d.setDate(d.getDate()+6);return d}
+function fmt(d){return d.toLocaleDateString('en-US',{month:'short',day:'numeric'})}
+function curWeek(){const n=new Date();n.setHours(0,0,0,0);
+  const w=Math.floor((n-START)/6048e5)+1;return Math.min(NW,Math.max(1,w))}
+function curDay(){const k=['sun','mon','tue','wed','thu','fri','sat'][new Date().getDay()];return k}
+function phaseOf(w){return P.phases.find(p=>p.weeks.includes(w))}
+function isDeload(w){return phaseOf(w).name.toLowerCase().includes('deload')}
+function setsFor(base,w,idx){const m=phaseOf(w).sets_mod;
+  let s = m===-2?2 : m===-1?Math.max(2,base-1) : base;
+  if(idx===0 && [5,6,10,11].includes(w)) s+=1;
+  return s}
+function dayDate(w,dk){const i=DAYS.findIndex(d=>d[0]===dk);const d=weekStart(w);d.setDate(d.getDate()+i);return d}
+
+let W=curWeek(), D=curDay()==='mon'?'mon':curDay();
+if(!DAYS.some(d=>d[0]===D)) D='tue';
+
+function save(k,v){try{localStorage.setItem('gg_'+k,JSON.stringify(v))}catch(e){}}
+function load(k,d){try{const v=localStorage.getItem('gg_'+k);return v?JSON.parse(v):d}catch(e){return d}}
+
+function renderPills(){
+  $('#pills').innerHTML=DAYS?Array.from({length:NW},(_,i)=>{const w=i+1;
+    return `<button class="pill${w===W?' on':''}${isDeload(w)?' dl':''}" data-w="${w}">${w}</button>`}).join(''):'';
+  $$('#pills .pill').forEach(b=>b.onclick=()=>{W=+b.dataset.w;render()});
+  const on=$('#pills .pill.on'); if(on) on.scrollIntoView({inline:'center',block:'nearest'});
+}
+function renderDays(){
+  const td=curDay(), tw=curWeek();
+  $('#days').innerHTML=DAYS.map(([k,l])=>
+    `<button class="day${k===D?' on':''}${(k===td&&W===tw)?' today':''}" data-d="${k}">${l}</button>`).join('');
+  $$('#days .day').forEach(b=>b.onclick=()=>{D=b.dataset.d;render()});
+}
+function exCard(e,w,idx,total){
+  const ph=phaseOf(w);
+  const isNew = w>=8 && /^NEW/.test(e.note||'');
+  const drop = [13,14].includes(w) && idx===total-2;
+  return `<div class="card${isNew?' new':''}">
+    <h3><span>${e.n}</span>${isNew?'<span class="tag">New</span>':''}${drop?'<span class="tag drop">Drop set</span>':''}</h3>
+    <div class="prescribe">
+      <div>Sets <b>${setsFor(e.s,w,idx)}</b></div>
+      <div>Reps <b>${e.r}</b></div>
+      <div>Load <b>${ph.sets_mod===-2?'60% of working':e.w}</b></div>
+      <div>Rest <b>${e.rest}s</b></div>
+    </div>
+    <p class="note">${e.note||''}${drop?' <b style="color:var(--amber)">Last set: to failure, strip 30%, go again to failure.</b>':''}</p>
+  </div>`;
+}
+function strengthDay(dk,w){
+  const s=P.strength[dk], ph=phaseOf(w);
+  const all = (w>=8 && s.p2!=='same') ? s.p2 : s.p1;
+  const list = all.filter(e=>!(e.n.startsWith('Hip Thrust') && w<3));
+  let h=`<div class="sect">${s.title} &middot; ${list.length} exercises</div>`;
+  if(s.warmup) h+=`<div class="card"><h3>Warm-up</h3><p class="note">${s.warmup}</p></div>`;
+  h+=list.map((e,i)=>exCard(e,w,i,list.length)).join('');
+  return h;
+}
+function z2Day(w){
+  const [mins,hr]=P.cardio.zone2[w];
+  const k=`z2_${w}`, done=load(k,false);
+  return `<div class="sect">Zone 2 Cardio</div>
+  <div class="card"><div class="big">${mins}<small> min</small></div>
+  <div class="prescribe" style="margin-top:8px"><div>Heart rate <b>${hr} bpm</b></div></div>
+  <p class="note">Conversational the whole way. If you cannot talk, slow down. Peloton, or treadmill at 3.5-4 mph and 3-5% incline, or a rower. Pick what you will actually do.</p>
+  <button class="donebtn${done?' on':''}" id="z2">${done?'Done':'Mark done'}</button></div>`;
+}
+function intDay(w){
+  const [rounds,mins,hr,rest,note]=P.cardio.intervals[w];
+  const k=`iv_${w}`, st=load(k,[]);
+  const total=10+rounds*mins+(rounds-1)*rest+5;
+  return `<div class="sect">VO2max Intervals &middot; about ${Math.round(total)} min</div>
+  <div class="card"><div class="big">${rounds} &times; ${mins}<small> min</small></div>
+  <div class="prescribe" style="margin-top:8px">
+    <div>Target <b>${hr} bpm</b></div><div>Recovery <b>${rest} min</b></div></div>
+  <p class="note">10 min easy warm-up. ${rounds} rounds of ${mins} min at ${hr} bpm, ${rest} min easy between. 5 min cooldown. Bike or rower, not running.</p>
+  <p class="note" style="color:var(--amber);margin-top:8px">${note}</p>
+  <div class="rounds">${Array.from({length:rounds},(_,i)=>
+    `<button class="rnd${st.includes(i)?' on':''}" data-r="${i}">${i+1}</button>`).join('')}</div>
+  <p class="note" style="font-size:12px">Tap a round as you finish it.</p></div>`;
+}
+function sunDay(w){
+  const [lo,hi]=P.cardio.sunday[w];
+  const k=`su_${w}`, done=load(k,false);
+  return `<div class="sect">Easy Cardio &middot; optional</div>
+  <div class="card"><div class="big">${lo}${hi!==lo?'-'+hi:''}<small> min</small></div>
+  <div class="prescribe" style="margin-top:8px"><div>Heart rate <b>under ${P.hr.easy_max} bpm</b></div></div>
+  <p class="note">Optional. This is the day you drop in a bad week and it costs you nothing. Outdoors if the weather allows. If you are pushing, you have missed the point.</p>
+  <button class="donebtn${done?' on':''}" id="su">${done?'Done':'Mark done'}</button></div>`;
+}
+function refCard(){
+  const n=P.nutrition;
+  return `<div class="sect">Daily reference</div>
+  <div class="card"><h3><span>Macros</span></h3><table>
+    <tr><td>Calories</td><td>${n.calories}</td></tr>
+    <tr><td>Protein</td><td>${n.protein_g} g</td></tr>
+    <tr><td>Carbs</td><td>${n.carbs_g} g</td></tr>
+    <tr><td>Fat</td><td>${n.fat_g} g</td></tr>
+    <tr><td>Creatine</td><td>${n.creatine_g} g daily</td></tr></table>
+    <details><summary>Protein anchors</summary><table>
+    ${n.anchors.map(a=>`<tr><td><b>${a.when}</b><br><span class="note">${a.what}</span></td><td>${a.g} g</td></tr>`).join('')}
+    </table></details></div>
+  <div class="card"><h3><span>Heart rate zones</span></h3>
+    <div class="zone"><span>Easy</span><b>under ${P.hr.easy_max}</b></div>
+    <div class="zone"><span>Zone 2</span><b>${P.hr.z2[0]}-${P.hr.z2[1]}</b></div>
+    <div class="zone"><span>VO2max</span><b>${P.hr.vo2[0]}-${P.hr.vo2[1]}</b></div>
+    <div class="zone"><span>Max</span><b>${P.meta.athlete.hr_max}</b></div></div>`;
+}
+function render(){
+  const ph=phaseOf(W);
+  $('#hdr').innerHTML=`Week ${W} <span>of ${NW} &middot; ${ph.name}</span>`;
+  $('#sub').textContent=`${fmt(weekStart(W))} to ${fmt(weekEnd(W))}`;
+  renderPills(); renderDays();
+  let h=`<div class="banner${isDeload(W)?' dl':''}"><b>${ph.name}</b><p>${ph.note}</p></div>`;
+  if(D==='mon') h+=`<div class="rest"><div style="font-size:19px;margin-bottom:6px">Rest day</div>
+    Full rest. Walk if you want, nothing structured.</div>`;
+  else if(D==='wed') h+=z2Day(W);
+  else if(D==='thu') h+=intDay(W);
+  else if(D==='sun') h+=sunDay(W);
+  else h+=strengthDay(D,W);
+  h+=refCard();
+  $('#main').innerHTML=h;
+  const z=$('#z2'); if(z) z.onclick=()=>{const k=`z2_${W}`,v=!load(k,false);save(k,v);render()};
+  const s=$('#su'); if(s) s.onclick=()=>{const k=`su_${W}`,v=!load(k,false);save(k,v);render()};
+  $$('.rnd').forEach(b=>b.onclick=()=>{const k=`iv_${W}`;let st=load(k,[]);const r=+b.dataset.r;
+    st=st.includes(r)?st.filter(x=>x!==r):[...st,r];save(k,st);render()});
+}
+render();
+</script>
+</body></html>

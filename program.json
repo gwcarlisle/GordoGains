@@ -1,395 +1,124 @@
 {
   "meta": {
-    "name": "General Fitness Block A",
-    "author": "Gordon Carlisle",
-    "start": "2026-09-15",
-    "weeks": 12,
+    "name": "GordoGains Block A",
+    "start_date": "2026-09-15",
+    "weeks": 16,
     "rest_day": "Monday",
-    "goals": [
-      "upper body muscle definition",
-      "midsection fat loss",
-      "cardiovascular conditioning",
-      "lower body maintenance"
-    ],
-    "constraints": [
-      "Monday is always off",
-      "Mornings only",
-      "Most sessions 60-90 min; Saturday may run longer",
-      "Lower body stays on machines",
-      "Knee tracking protected: lateral band walks and both calf raise variations are never dropped",
-      "Weeks 1-2: all pressing and rowing seated or chest-supported, no spinal loading"
-    ],
-    "hr": {
-      "max": 180,
-      "zone2_low": 122,
-      "zone2_high": 144,
-      "vo2_low": 162,
-      "vo2_high": 171,
-      "easy_high": 122
-    },
-    "baseline_from_logs": {
-      "source": "p3tracker_v1 weeks 9-16, p4tracker_v1 weeks 1-3",
-      "db_bench_press_lbs_per_hand": 45,
-      "db_row_lbs_per_hand": 55,
-      "barbell_hip_thrust_lbs": 110,
-      "goblet_squat_lbs": 50,
-      "bulgarian_split_squat_lbs_per_hand": 40,
-      "single_leg_rdl_lbs": 45,
-      "leg_press_lbs": 200,
-      "suitcase_carry_lbs": 60,
-      "farmer_carry_lbs": 120,
-      "note": "Phase 4 logging goes patchy after week 2. Effective layoff is closer to 5-6 weeks than 2."
-    }
+    "athlete": {"age": 53, "height": "6'2\"", "start_weight_lbs": 197, "hr_max": 180},
+    "goals": ["upper body definition", "midsection fat loss", "cardiovascular conditioning", "lower body maintenance"]
   },
+
+  "hr": {"easy_max": 122, "z2": [122, 144], "z2_upper": [128, 144], "vo2": [162, 171], "vo2_light": [158, 168], "deload": [155, 165]},
+
   "nutrition": {
-    "calories": 2450,
-    "protein_g": 180,
-    "carbs_g": 250,
-    "fat_g": 80,
-    "creatine_g": 5,
+    "calories": 2450, "protein_g": 180, "carbs_g": 250, "fat_g": 80, "creatine_g": 5,
     "review": "If bodyweight has not moved after 2 full weeks of hitting these, drop 150 calories from carbs.",
-    "protein_anchors": [
-      {
-        "when": "breakfast",
-        "what": "Fairlife Core Power Elite, or whey + liquid egg whites",
-        "g": 40
-      },
-      {
-        "when": "mid-morning",
-        "what": "Greek yogurt or cottage cheese",
-        "g": 25
-      },
-      {
-        "when": "lunch",
-        "what": "Rotisserie chicken or canned tuna",
-        "g": 45
-      },
-      {
-        "when": "dinner",
-        "what": "Salmon, ground turkey, or shrimp",
-        "g": 45
-      },
-      {
-        "when": "before bed",
-        "what": "Casein shake",
-        "g": 25
-      }
+    "anchors": [
+      {"when": "Breakfast", "what": "Fairlife Core Power Elite, or whey + liquid egg whites", "g": 40},
+      {"when": "Mid-morning", "what": "Greek yogurt or cottage cheese", "g": 25},
+      {"when": "Lunch", "what": "Rotisserie chicken or canned tuna", "g": 45},
+      {"when": "Dinner", "what": "Salmon, ground turkey, or shrimp", "g": 45},
+      {"when": "Before bed", "what": "Casein shake", "g": 25}
     ]
   },
+
   "phases": [
-    {
-      "weeks": [
-        1,
-        2
-      ],
-      "name": "Ramp-in",
-      "sets_modifier": -1,
-      "rpe": "6-7",
-      "note": "Find loads. Leave 3-4 reps in reserve. No barbell hip thrust. Intervals are 3 rounds, not 4."
-    },
-    {
-      "weeks": [
-        3,
-        4,
-        5,
-        6
-      ],
-      "name": "Build A",
-      "sets_modifier": 0,
-      "rpe": "7-8",
-      "note": "Double progression. Hip thrust machine enters week 3."
-    },
-    {
-      "weeks": [
-        7
-      ],
-      "name": "Deload",
-      "sets_modifier": -2,
-      "rpe": "5-6",
-      "note": "60% of working loads. Same reps. Mandatory, not optional."
-    },
-    {
-      "weeks": [
-        8,
-        9,
-        10,
-        11
-      ],
-      "name": "Build B",
-      "sets_modifier": 0,
-      "rpe": "8-9",
-      "note": "Last set of the final exercise in each session taken to 1-2 reps from failure."
-    },
-    {
-      "weeks": [
-        12
-      ],
-      "name": "Test",
-      "sets_modifier": -1,
-      "rpe": "6-7",
-      "note": "Light week. Re-measure waist, weight, resting HR. DEXA re-scan if you baselined."
-    }
+    {"weeks": [1,2],        "name": "Re-entry",        "sets_mod": -1, "rpe": "6-7", "note": "One less set on everything. Stop 3-4 reps short. You are finding loads, not training. Everything seated or chest-supported. No hip thrust yet."},
+    {"weeks": [3,4,5,6],    "name": "Accumulation 1",  "sets_mod": 0,  "rpe": "7-8", "note": "Full sets. Double progression: hit the top of the rep range on every set, add weight next session. Hip thrust enters week 3. Primary lifts go to 5 sets in weeks 5-6."},
+    {"weeks": [7],          "name": "Deload",          "sets_mod": -2, "rpe": "5-6", "note": "Two sets per exercise at 60% of your working weight, same reps. It will feel pointless. Do it anyway. This is what makes weeks 8-11 productive."},
+    {"weeks": [8,9,10,11],  "name": "Accumulation 2",  "sets_mod": 0,  "rpe": "8-9", "note": "New exercises on the upper days. Primaries drop to 6-10 reps, which means heavier. Primary goes to 5 sets in weeks 10-11."},
+    {"weeks": [12],         "name": "Deload",          "sets_mod": -2, "rpe": "5-6", "note": "Same as week 7. Two sets, 60%."},
+    {"weeks": [13,14],      "name": "Intensification", "sets_mod": 0,  "rpe": "9",   "note": "Heaviest work of the block. The last set of the final accessory each day is a drop set: hit failure, strip 30%, go again to failure. One per session, no more."},
+    {"weeks": [15],         "name": "Holiday deload",  "sets_mod": -2, "rpe": "5-6", "note": "Planned light week over Christmas. Train what you can, eat what you want. This is in the program on purpose so a disrupted week does not become a lost month."},
+    {"weeks": [16],         "name": "Test",            "sets_mod": -1, "rpe": "6-7", "note": "Light on strength. Thursday is the benchmark: the exact week 3 interval session. Re-measure weight, waist and resting HR."}
   ],
-  "progression": {
-    "rule": "Double progression. When you hit the top of the rep range on every working set, add weight next session.",
-    "increment_upper_lbs": 5,
-    "increment_lower_lbs": 10
-  },
-  "week": [
-    {
-      "day": "Monday",
-      "type": "rest",
-      "title": "Off",
-      "notes": "Full rest. Walk if you want, nothing structured."
+
+  "cardio": {
+    "zone2":     {"1":[40,"122-144"],"2":[40,"122-144"],"3":[45,"122-144"],"4":[45,"122-144"],"5":[50,"122-144"],"6":[50,"122-144"],"7":[35,"122-135"],"8":[50,"128-144"],"9":[50,"128-144"],"10":[55,"128-144"],"11":[55,"128-144"],"12":[40,"122-135"],"13":[60,"128-144"],"14":[60,"128-144"],"15":[40,"122-135"],"16":[40,"122-135"]},
+    "intervals": {
+      "1":[3,4,"158-168",3,"Three rounds, not four. You are re-entering. Get used to the feeling."],
+      "2":[3,4,"158-168",3,"Three rounds. Last easy week before it gets real."],
+      "3":[4,4,"162-171",3,"Four rounds from here. REMEMBER THIS SESSION. Week 16 repeats it exactly and you will compare."],
+      "4":[4,4,"162-171",3,"Four rounds. Push from the gun, do not build into it."],
+      "5":[4,4,"162-171",3,"Aim to reach 162 within 90 seconds of starting each round."],
+      "6":[4,4,"162-171",3,"Same session. The adaptation is in how fast you get to target and how fast you recover."],
+      "7":[3,3,"155-165",3,"DELOAD. Three rounds of three minutes, easier target. Do not be a hero."],
+      "8":[4,4,"162-171",2.5,"Recovery drops to 2:30. Same work, less rest. This is the progression."],
+      "9":[4,4,"162-171",2.5,"Recovery still 2:30."],
+      "10":[5,4,"162-171",3,"FIVE rounds. Recovery back to 3 min. Round five is the whole point."],
+      "11":[5,4,"162-171",3,"Five rounds again."],
+      "12":[3,3,"155-165",3,"DELOAD."],
+      "13":[4,5,"162-171",3,"FIVE minute rounds. Hardest version in the block. Minute four is where it is won."],
+      "14":[4,5,"162-171",3,"Five minute rounds again."],
+      "15":[3,3,"155-165",3,"Holiday deload. Do it if you can, skip it without guilt if you cannot."],
+      "16":[4,4,"162-171",3,"BENCHMARK. Identical to week 3. Compare your average HR per round and how fast you recover between them."]
     },
-    {
-      "day": "Tuesday",
-      "type": "strength",
+    "sunday":    {"1":[45,60],"2":[45,60],"3":[45,60],"4":[45,60],"5":[45,60],"6":[45,60],"7":[30,45],"8":[60,75],"9":[60,75],"10":[60,75],"11":[60,75],"12":[45,45],"13":[60,90],"14":[60,90],"15":[30,60],"16":[45,45]}
+  },
+
+  "strength": {
+    "tue": {
       "title": "Upper A - Push",
-      "target_min": 75,
-      "routine": "UPPER_A"
+      "p1": [
+        {"n":"Incline Bench Press (Dumbbell)","s":4,"r":"8-12","w":"30 lb DBs","rest":150,"note":"Primary. 30-40 degree bench. Elbows at 45 degrees, not flared."},
+        {"n":"Chest Press (Machine)","s":3,"r":"10-12","w":"find it","rest":90,"note":"No history here. Week 1 is finding the load."},
+        {"n":"Cable Fly Crossovers","s":3,"r":"12-15","w":"25 lb/side","rest":75,"note":"Chest volume. Squeeze and hold a beat in the middle. Light."},
+        {"n":"Shoulder Press (Dumbbell)","s":3,"r":"10-12","w":"25 lb DBs","rest":90,"note":"SEATED with back support. Non-negotiable."},
+        {"n":"Lateral Raise (Dumbbell)","s":3,"r":"12-15","w":"12 lb DBs","rest":60,"note":"Light. Shoulder width is what makes a waist look narrow."},
+        {"n":"Triceps Pushdown","s":3,"r":"12-15","w":"40 lbs","rest":60,"note":"Elbows pinned to your sides."},
+        {"n":"Pallof Press","s":3,"r":"10 each side","w":"25 lbs","rest":60,"note":"Anti-rotation core. Back friendly. Slow."}
+      ],
+      "p2": [
+        {"n":"Bench Press (Dumbbell)","s":4,"r":"6-10","w":"heavier","rest":150,"note":"NEW. Flat bench. You have history here, and it loads heavier than incline."},
+        {"n":"Incline Chest Press (Machine)","s":3,"r":"8-12","w":"find it","rest":90,"note":"NEW. Covers the upper chest angle you gave up."},
+        {"n":"Cable Fly Crossovers","s":3,"r":"12-15","w":"progress","rest":75,"note":"Unchanged."},
+        {"n":"Shoulder Press (Dumbbell)","s":3,"r":"8-10","w":"progress","rest":90,"note":"Heavier rep range now."},
+        {"n":"Lateral Raise (Cable)","s":3,"r":"12-15","w":"find it","rest":60,"note":"NEW. Constant tension through the whole range, unlike dumbbells."},
+        {"n":"Triceps Pushdown","s":3,"r":"10-12","w":"progress","rest":60,"note":"Heavier. Weeks 13-14 this is your drop set."},
+        {"n":"Pallof Press","s":3,"r":"10 each side","w":"progress","rest":60,"note":"Unchanged."}
+      ]
     },
-    {
-      "day": "Wednesday",
-      "type": "cardio",
-      "title": "Zone 2",
-      "target_min": 50,
-      "prescription": "45-50 min at 122-144 bpm. Peloton, or treadmill at 3.5-4 mph and 3-5% incline. Conversational the whole way. If you cannot talk, slow down."
-    },
-    {
-      "day": "Thursday",
-      "type": "cardio",
-      "title": "VO2max Intervals",
-      "target_min": 40,
-      "prescription": "10 min easy warm-up. Then 4 rounds of: 4 min at 162-171 bpm, 3 min easy. 5 min cooldown. Weeks 1-2 do 3 rounds. Bike or rower preferred over running.",
-      "note": "This is the highest-value session of your week. Do not skip it. It takes about 90 seconds of each 4-minute round to reach the target heart rate, so push from the start."
-    },
-    {
-      "day": "Friday",
-      "type": "strength",
+    "fri": {
       "title": "Upper B - Pull",
-      "target_min": 75,
-      "routine": "UPPER_B"
+      "p1": [
+        {"n":"Chest Supported Incline Row (Dumbbell)","s":4,"r":"8-12","w":"40 lb DBs","rest":150,"note":"Primary. Chest stays on the pad. Drive elbows back, squeeze. PER HAND."},
+        {"n":"Lat Pulldown (Cable)","s":4,"r":"10-12","w":"100 lbs","rest":90,"note":"Wide grip. Pull to the collarbone, never behind the neck."},
+        {"n":"Seated Row (Machine)","s":3,"r":"10-12","w":"90 lbs","rest":90,"note":"Neutral grip. Do not rock. Torso stays still."},
+        {"n":"Face Pull","s":3,"r":"15","w":"30 lbs","rest":60,"note":"Rope at eye height. Posture insurance for a desk job."},
+        {"n":"Bicep Curl (Dumbbell)","s":3,"r":"10-12","w":"20 lb DBs","rest":60,"note":"No swinging."},
+        {"n":"Hammer Curl (Dumbbell)","s":3,"r":"10-12","w":"20 lb DBs","rest":60,"note":"Neutral grip hits the brachialis, which is what makes the arm look thicker."},
+        {"n":"Dead Bug","s":3,"r":"12 each side","w":"bodyweight","rest":60,"note":"Lower back stays flat on the floor throughout."}
+      ],
+      "p2": [
+        {"n":"Seated Row (Machine)","s":4,"r":"6-10","w":"heavier","rest":150,"note":"NEW PRIMARY. Neutral grip, heavy. Moves to the front of the session."},
+        {"n":"Lat Pulldown (Cable) - neutral grip","s":4,"r":"8-10","w":"progress","rest":90,"note":"NEW GRIP. Easier on the shoulder at heavier loads."},
+        {"n":"Chest Supported Incline Row (Dumbbell)","s":3,"r":"10-12","w":"progress","rest":90,"note":"Drops to accessory, higher reps."},
+        {"n":"Face Pull","s":3,"r":"15","w":"progress","rest":60,"note":"Unchanged."},
+        {"n":"Bicep Curl (Dumbbell)","s":3,"r":"8-12","w":"progress","rest":60,"note":"Heavier."},
+        {"n":"Hammer Curl (Dumbbell)","s":3,"r":"8-12","w":"progress","rest":60,"note":"Heavier. Weeks 13-14 this is your drop set."},
+        {"n":"Dead Bug","s":3,"r":"12 each side","w":"bodyweight","rest":60,"note":"Unchanged."}
+      ]
     },
-    {
-      "day": "Saturday",
-      "type": "strength",
+    "sat": {
       "title": "Lower - Machines",
-      "target_min": 85,
-      "routine": "LOWER"
-    },
-    {
-      "day": "Sunday",
-      "type": "cardio",
-      "title": "Easy (optional)",
-      "target_min": 60,
-      "optional": true,
-      "prescription": "45-75 min easy, under 122 bpm. Outdoors if the weather allows. This is the day you drop in a bad week. Dropping it costs you nothing."
-    }
-  ],
-  "routines": {
-    "UPPER_A": {
-      "title": "Upper A - Push",
-      "notes": "Seated and supported pressing. Finish with 10 min easy spin at Zone 2.",
-      "exercises": [
-        {
-          "name": "Incline Bench Press (Dumbbell)",
-          "sets": 4,
-          "reps": "8-12",
-          "rest": 120,
-          "note": "Primary. 30-40 degree bench. Elbows at 45 degrees, not flared.",
-          "start_lbs": 30
-        },
-        {
-          "name": "Chest Press (Machine)",
-          "sets": 3,
-          "reps": "10-12",
-          "rest": 90,
-          "note": "Weeks 1-2 use the machine. From week 3 you may swap to flat dumbbell bench.",
-          "start_lbs": null
-        },
-        {
-          "name": "Shoulder Press (Dumbbell)",
-          "sets": 3,
-          "reps": "10-12",
-          "rest": 90,
-          "note": "SEATED with back support. Non-negotiable while the back settles.",
-          "start_lbs": 25
-        },
-        {
-          "name": "Lateral Raise (Dumbbell)",
-          "sets": 3,
-          "reps": "12-15",
-          "rest": 60,
-          "note": "Light. Shoulder width is what makes a waist look narrow.",
-          "start_lbs": 12
-        },
-        {
-          "name": "Triceps Pushdown",
-          "sets": 3,
-          "reps": "12-15",
-          "rest": 60,
-          "note": "Cable. Elbows pinned to your sides.",
-          "start_lbs": 40
-        },
-        {
-          "name": "Pallof Press",
-          "sets": 3,
-          "reps": "10 each side",
-          "rest": 60,
-          "note": "Anti-rotation core. Back-friendly. Slow.",
-          "start_lbs": 25
-        }
-      ]
-    },
-    "UPPER_B": {
-      "title": "Upper B - Pull",
-      "notes": "All rowing is chest-supported or seated. No bent-over work. Finish with 10 min easy spin.",
-      "exercises": [
-        {
-          "name": "Chest Supported Row (Machine)",
-          "sets": 4,
-          "reps": "8-12",
-          "rest": 120,
-          "note": "Primary. Chest stays on the pad. Drive elbows back, squeeze.",
-          "start_lbs": 90
-        },
-        {
-          "name": "Lat Pulldown (Cable)",
-          "sets": 4,
-          "reps": "10-12",
-          "rest": 90,
-          "note": "Wide grip. Pull to the collarbone, not behind the neck.",
-          "start_lbs": 100
-        },
-        {
-          "name": "Seated Cable Row",
-          "sets": 3,
-          "reps": "10-12",
-          "rest": 90,
-          "note": "Neutral grip. Do not rock. Torso stays still.",
-          "start_lbs": 90
-        },
-        {
-          "name": "Face Pull",
-          "sets": 3,
-          "reps": "15",
-          "rest": 60,
-          "note": "Rope at eye height. Posture insurance for a desk job.",
-          "start_lbs": 30
-        },
-        {
-          "name": "Bicep Curl (Dumbbell)",
-          "sets": 3,
-          "reps": "10-12",
-          "rest": 60,
-          "note": "Seated or standing. No swinging.",
-          "start_lbs": 20
-        },
-        {
-          "name": "Dead Bug",
-          "sets": 3,
-          "reps": "12 each side",
-          "rest": 60,
-          "note": "Lower back stays flat on the floor the whole time.",
-          "start_lbs": null
-        }
-      ]
-    },
-    "LOWER": {
-      "title": "Lower - Machines",
-      "notes": "Maintenance, not growth. Machines only. Warm up with lateral band walks 2x20 each direction and glute bridges 2x12 before the first set.",
-      "exercises": [
-        {
-          "name": "Leg Press",
-          "sets": 4,
-          "reps": "10-12",
-          "rest": 120,
-          "note": "Feet mid-platform. Knees track over your second toe. Do not let the lower back round at the bottom.",
-          "start_lbs": 160
-        },
-        {
-          "name": "Hip Thrust (Machine)",
-          "sets": 3,
-          "reps": "10-12",
-          "rest": 90,
-          "note": "WEEK 3 ONWARD. Skip entirely in weeks 1-2.",
-          "start_lbs": 90
-        },
-        {
-          "name": "Leg Extension (Machine)",
-          "sets": 3,
-          "reps": "12-15",
-          "rest": 75,
-          "note": "Controlled. Pause a beat at the top.",
-          "start_lbs": 70
-        },
-        {
-          "name": "Seated Leg Curl (Machine)",
-          "sets": 3,
-          "reps": "12-15",
-          "rest": 75,
-          "note": "Hamstrings. Slow on the way back.",
-          "start_lbs": 70
-        },
-        {
-          "name": "Hip Abduction (Machine)",
-          "sets": 3,
-          "reps": "15",
-          "rest": 60,
-          "note": "Knee protection. This is the machine version of the lateral band walk.",
-          "start_lbs": 70
-        },
-        {
-          "name": "Standing Calf Raise (Machine)",
-          "sets": 3,
-          "reps": "12",
-          "rest": 60,
-          "note": "Full stretch at the bottom, full squeeze at the top.",
-          "start_lbs": 90
-        },
-        {
-          "name": "Seated Calf Raise (Machine)",
-          "sets": 3,
-          "reps": "12",
-          "rest": 60,
-          "note": "Bent knee hits a different calf muscle. Both variations stay in.",
-          "start_lbs": 45
-        },
-        {
-          "name": "Plank",
-          "sets": 3,
-          "reps": "45-60 sec",
-          "rest": 60,
-          "note": "Squeeze glutes. Do not let the hips sag.",
-          "start_lbs": null
-        }
-      ]
+      "warmup": "Lateral band walks 2 x 20 steps each direction, then glute bridges 2 x 12. Never skipped. This is the knee protection work.",
+      "p1": [
+        {"n":"Leg Press","s":4,"r":"10-12","w":"160 lbs","rest":150,"note":"Feet mid-platform. Knees track over your second toe. Do not let the lower back round at the bottom."},
+        {"n":"Hip Thrust (Machine)","s":3,"r":"10-12","w":"90 lbs","rest":90,"note":"WEEK 3 ONWARD. Skip entirely in weeks 1-2."},
+        {"n":"Leg Extension (Machine)","s":3,"r":"12-15","w":"70 lbs","rest":75,"note":"Controlled. Pause a beat at the top."},
+        {"n":"Seated Leg Curl (Machine)","s":3,"r":"12-15","w":"70 lbs","rest":75,"note":"Slow on the way back."},
+        {"n":"Hip Abduction (Machine)","s":3,"r":"15","w":"70 lbs","rest":60,"note":"Knee protection. Never drops out of the program."},
+        {"n":"Standing Calf Raise (Machine)","s":3,"r":"12","w":"90 lbs","rest":60,"note":"Full stretch at the bottom, full squeeze at the top."},
+        {"n":"Seated Calf Raise (Machine)","s":3,"r":"12","w":"45 lbs","rest":60,"note":"Bent knee hits a different calf muscle. Both variations stay in."},
+        {"n":"Plank","s":3,"r":"45-60 sec","w":"bodyweight","rest":60,"note":"Squeeze glutes. Do not let the hips sag."}
+      ],
+      "p2": "same"
     }
   },
-  "metrics": {
-    "weekly": [
-      "bodyweight (same time, same conditions)",
-      "waist at navel, morning, before food"
-    ],
-    "continuous": [
-      "resting heart rate (Ultrahuman)",
-      "sleep duration and HRV (Ultrahuman)"
-    ],
-    "per_session": [
-      "all working weights and reps (Hevy)",
-      "duration and average HR (Garmin to Strava)"
-    ],
-    "targets_12wk": {
-      "waist_change_in": "-2 to -3",
-      "resting_hr": "low to mid 50s",
-      "bodyweight_lbs": "188-191, with more upper body muscle than at 197",
-      "note": "Bodyweight is a data point, not the goal. Waist and the mirror decide."
-    }
-  },
+
   "non_training": [
-    "Two to three phone meetings a day taken walking. Audio-only calls do not need a chair.",
-    "Standing desk from 20% to 40% of the day.",
-    "Ask the doctor about ApoB on the next lipid panel, and about whether a calcium score fits your history."
+    "Two to three phone meetings a day taken walking. Most of your meetings are audio and nine hours of sitting is its own risk.",
+    "Standing desk from 20 percent to 40 percent of the day.",
+    "Ask your doctor about ApoB on the next lipid panel, and whether a calcium score fits your family history."
   ]
 }
